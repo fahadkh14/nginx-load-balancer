@@ -152,7 +152,7 @@ Refresh the page multiple times to observe requests being served by different ba
 ## Project Structure
 
 ```
-images/project-structure.png
+![Project Structure](images/project-structure.png)
 ```
 
 ---
