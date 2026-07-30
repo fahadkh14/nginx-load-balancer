@@ -147,47 +147,33 @@ Refresh the page multiple times to observe requests being served by different ba
 
 ---
 
-# 📸 Screenshots
+## 📁 Project Structure
 
-## Project Structure
-
-```
-![Project Structure](images/project-structure.png)
-```
+![Project Structure](./images/project-structure.png)
 
 ---
 
-## Running Containers
+## 🐳 Running Containers
 
-```
-images/docker-ps.png
-```
+![Running Containers](./images/docker-ps.png)
 
 ---
 
-## Server 1
+## 🌐 Server 1
 
-```
-images/server1.png
-```
+![Server 1](./images/server1.png)
 
 ---
 
-## Server 2
+## 🌐 Server 2
 
-```
-images/server2.png
-```
+![Server 2](./images/server2.png)
 
 ---
 
-## Server 3
+## 🌐 Server 3
 
-```
-images/server3.png
-```
-
----
+![Server 3](./images/server3.png)
 
 # 📚 Docker Commands Used
 
