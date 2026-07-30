@@ -95,7 +95,7 @@ Web1 Web2 Web3
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/nginx-load-balancer.git
+git clone https://github.com/fahadkh14/nginx-load-balancer.git
 
 cd nginx-load-balancer
 ```
