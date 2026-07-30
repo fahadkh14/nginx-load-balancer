@@ -1,29 +1,62 @@
 # 🚀 Docker Nginx Load Balancer Lab
 
-A simple Docker project demonstrating **Nginx as a Load Balancer** with **three independent web server containers**.
+A simple Docker project demonstrating **Nginx as a Load Balancer** with **three independent web server containers**. The project showcases how incoming client requests are distributed across multiple backend servers using the **Round Robin** load balancing algorithm.
 
 ---
 
 # 📌 Project Overview
 
-This project demonstrates how **Nginx** distributes incoming requests across multiple backend web server containers using the **Round Robin** load balancing algorithm.
+This project demonstrates how **Nginx** acts as a **Reverse Proxy** and **Load Balancer** for multiple Docker containers.
+
+Instead of sending every client request to a single server, Nginx distributes the requests evenly across three backend web servers, improving scalability and availability.
 
 ---
 
-# 📐 Architecture
+# 🏗️ Architecture
+
+![Docker Nginx Load Balancer Architecture](./images/architecture.png)
+
+---
+
+# 🔄 What is Round Robin?
+
+**Round Robin** is one of the simplest and most widely used load balancing algorithms.
+
+It distributes incoming client requests **sequentially** across all available backend servers.
+
+Instead of sending every request to the same server, Nginx forwards each new request to the next server in the list, ensuring that the workload is shared equally.
+
+## Example
+
+| Request | Backend Server |
+|----------|----------------|
+| Request 1 | Web1 |
+| Request 2 | Web2 |
+| Request 3 | Web3 |
+| Request 4 | Web1 |
+| Request 5 | Web2 |
+| Request 6 | Web3 |
+
+### Request Flow
 
 ```text
-                 Client
-                    │
-          http://localhost
-                    │
-          +------------------+
-          |   Nginx (LB)     |
-          +------------------+
-            │      │      │
-            │      │      │
-         Web1    Web2    Web3
+Client Requests
+
+Request 1 ─────► Web1
+Request 2 ─────► Web2
+Request 3 ─────► Web3
+Request 4 ─────► Web1
+Request 5 ─────► Web2
+Request 6 ─────► Web3
 ```
+
+## Advantages
+
+- ⚖️ Evenly distributes incoming traffic
+- 🚀 Improves application performance
+- 📈 Makes scaling easier
+- 🔄 Prevents a single server from becoming overloaded
+- 🛠️ Simple and efficient algorithm
 
 ---
 
@@ -36,6 +69,7 @@ nginx-load-balancer/
 ├── README.md
 │
 ├── images/
+│   ├── architecture.png
 │   ├── docker-ps.png
 │   ├── project-structure.png
 │   ├── server1.png
@@ -65,27 +99,29 @@ nginx-load-balancer/
 - Docker
 - Docker Compose
 - Nginx
-- HTML
-- CSS
+- HTML5
+- CSS3
 
 ---
 
 # 🔄 Workflow
 
-1. User sends a request to `http://localhost`
+1. Client sends a request to **http://localhost**
 2. Nginx receives the request.
-3. Nginx forwards the request to one of the backend containers.
-4. Backend container processes the request.
-5. Response is returned to the user.
+3. Nginx applies the Round Robin algorithm.
+4. Request is forwarded to one of the backend containers.
+5. Backend processes the request.
+6. Response is returned to the client.
 
 ```text
-Client
-   │
-   ▼
-Nginx
- │ │ │
- ▼ ▼ ▼
-Web1 Web2 Web3
+              Client
+                 │
+                 ▼
+        Nginx Load Balancer
+                 │
+      ┌──────────┼──────────┐
+      ▼          ▼          ▼
+    Web1       Web2       Web3
 ```
 
 ---
@@ -127,6 +163,8 @@ docker ps
 Expected Output
 
 ```text
+CONTAINER ID   IMAGE     STATUS
+
 nginx-lb
 web1
 web2
@@ -146,6 +184,8 @@ http://localhost
 Refresh the page multiple times to observe requests being served by different backend servers.
 
 ---
+
+# 📸 Screenshots
 
 ## 📁 Project Structure
 
@@ -174,6 +214,8 @@ Refresh the page multiple times to observe requests being served by different ba
 ## 🌐 Server 3
 
 ![Server 3](./images/server3.png)
+
+---
 
 # 📚 Docker Commands Used
 
@@ -219,11 +261,11 @@ docker logs nginx-lb
 
 ## Default Nginx Welcome Page Appears
 
-**Reason**
+### Reason
 
-The Docker image was not rebuilt after modifying the application.
+Docker image was not rebuilt after modifying the application.
 
-**Solution**
+### Solution
 
 ```bash
 docker compose down
@@ -235,41 +277,62 @@ docker compose up -d
 
 ---
 
-## Container Not Running
+## Containers Are Not Running
 
-Verify all containers are running:
+Check container status:
 
 ```bash
 docker ps
+```
+
+Restart if necessary:
+
+```bash
+docker compose up -d
 ```
 
 ---
 
 # 📖 Concepts Covered
 
-- Docker Containers
 - Docker Images
+- Docker Containers
 - Docker Compose
 - Docker Networking
+- Docker Bridge Network
 - Nginx Reverse Proxy
-- Load Balancing
+- Nginx Load Balancing
 - Round Robin Algorithm
-- Port Mapping
 - Container Communication
 
 ---
 
 # 🎯 Learning Outcomes
 
-After completing this lab, you will be able to:
+After completing this project, you will understand how to:
 
-- Create Docker images
-- Run multiple containers
+- Build Docker images
+- Run multiple Docker containers
 - Configure Docker Compose
-- Understand Docker networking
 - Configure Nginx as a Reverse Proxy
-- Implement Round Robin Load Balancing
-- Test communication between containers
+- Configure Nginx as a Load Balancer
+- Implement the Round Robin algorithm
+- Understand Docker networking
+- Enable communication between containers
+- Build a simple production-style multi-container architecture
+
+---
+
+# 🚀 Future Improvements
+
+- Add a custom Docker network
+- Configure HTTPS with SSL certificates
+- Implement Health Checks
+- Add Docker Volumes
+- Integrate Prometheus & Grafana Monitoring
+- Deploy the project on Kubernetes
+- Configure Nginx Ingress Controller
+- Automate deployment using GitHub Actions
 
 ---
 
@@ -277,8 +340,15 @@ After completing this lab, you will be able to:
 
 **Mohd Fahad Khan**
 
-GitHub: https://github.com/fahadkh14
+🔗 GitHub: https://github.com/fahadkh14
 
 ---
 
-⭐ If you found this project useful, don't forget to star the repository.
+## ⭐ Support
+
+If you found this project helpful:
+
+- ⭐ Star this repository
+- 🍴 Fork the repository
+- 💡 Share your feedback
+- 🚀 Happy Learning!
